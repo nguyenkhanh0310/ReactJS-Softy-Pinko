@@ -1,7 +1,16 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col';
+import { FaBarsStaggered } from "react-icons/fa6";
+import React, { useState } from 'react';
 function Header() {
+
+    const [menuVisible, setMenuVisible] = useState(false); // State to manage menu visibility
+
+    const toggleMenu = () => {
+      setMenuVisible(!menuVisible); // Toggle menu visibility on click
+    };
+
     return (
         <>
             <header className="header">
@@ -14,7 +23,7 @@ function Header() {
                                         <img src="/logo.png" alt="Logo"/>
                                     </a>
                                 </div>
-                                <div className="header__menu">
+                                <div className={`header__menu ${menuVisible ? 'header__menu--show' : ''}`}>
                                     <ul>
                                         <li><a href="#" className="header__menu--active">Home</a></li>
                                         <li><a href="#">About</a></li>
@@ -25,8 +34,8 @@ function Header() {
                                         <li><a href="#">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <div className="header__icon--mobi">
-                                    <i className="fa-solid fa-bars-staggered"></i>
+                                <div className="header__icon--mobi" onClick={toggleMenu}>
+                                    <FaBarsStaggered />
                                 </div>
                             </div>
                         </Col>
